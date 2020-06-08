@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import os
 import base64
@@ -28,11 +28,11 @@ def test(cmd, path):
     if len(must_words) != 0:
         for i in must_words:
             if i in cmd:
-                print("Now testing " + path)
+                print "Now testing " + path
                 os.system(cmd)
                 break
         return
-    print("Now testing " + path)
+    print "Now testing " + path
     os.system(cmd)
 
 
