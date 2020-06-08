@@ -43,7 +43,7 @@ def main(before, after):
         for d in dirs:
             path = os.path.join(root, d)
             cmd = "go test {0} -timeout 3s -count=1 -test.bench=. -cpuprofile ./results/before/{1}_cpu.out -memprofile ./results/before/{1}_mem.out > ./results/before/{1}_std.out".format(
-                path, base64.urlsafe_b64encode(path))
+                path, base64.urlsafe_b64encode(bytes(path, 'UTF-8')))
             test(cmd, path)
 
     init(after)
@@ -52,7 +52,7 @@ def main(before, after):
         for d in dirs:
             path = os.path.join(root, d)
             cmd = "go test {0} -timeout 3s -count=1 -test.bench=. -cpuprofile ./results/after/{1}_cpu.out -memprofile ./results/after/{1}_mem.out > ./results/after/{1}_std.out".format(
-                path, base64.urlsafe_b64encode(path))
+                path, base64.urlsafe_b64encode(bytes(path, 'UTF-8')))
             test(cmd, path)
 
     os.system('tar cvf ' + after + '.tar ./results/*')
