@@ -10,6 +10,7 @@ must_words = []
 
 def init(commit):
     os.system('git reset --hard ' + commit)
+    os.system('go get ./...')
     # os.system('dep init')
     # os.system('dep ensure')
     # os.system('go get -d -v ./...')
