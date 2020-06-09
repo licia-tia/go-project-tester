@@ -3,22 +3,16 @@
 import os
 import base64
 
-# os.chdir('./benchmark')
 
-ng_words = ['Documentation', 'vendor', '.git', 'results', 'ui']
-must_words = ['benchmain']
-
-os.system('mkdir results')
-os.system('rm ./results/*')
-os.system('mkdir ./results/before')
-os.system('mkdir ./results/after')
+ng_words = []
+must_words = []
 
 
 def init(commit):
     os.system('git reset --hard ' + commit)
-    os.system('dep init')
-    os.system('dep ensure')
-    os.system('go get -d -v ./...')
+    # os.system('dep init')
+    # os.system('dep ensure')
+    # os.system('go get -d -v ./...')
 
 
 def test(cmd, path):
@@ -37,6 +31,10 @@ def test(cmd, path):
 
 
 def main(before, after):
+    os.system('mkdir results')
+    os.system('rm ./results/*')
+    os.system('mkdir ./results/before')
+    os.system('mkdir ./results/after')
     init(before)
     list_dirs = os.walk('.')
     for root, dirs, files in list_dirs:
@@ -60,6 +58,6 @@ def main(before, after):
 
 
 if __name__ == "__main__":
-    before = '712624e6869ea374ad1d2a57071e7de7310dbfbd'
-    after = 'eca11cb9e47ddbe78dc0819ce345cb283450a135'
+    before = 'a4f24690a48567d0cbfad2f1b767d786bc53c393'
+    after = '92635fa6bffd9db9b2cca8ce8f978bfebabd9c29'
     main(before, after)
